@@ -1,8 +1,6 @@
-from pydoc import render_doc
-from tkinter import E
-from django.shortcuts import render
-from products.models import Product
 
+from django.shortcuts import redirect, render
+from products.models import Product, SizeVariant
 
 
 
@@ -20,3 +18,9 @@ def get_product(request , slug):
 
     except Exception as e:
         print(e)
+
+
+
+
+
+
