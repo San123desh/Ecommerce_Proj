@@ -101,6 +101,23 @@ def add_to_cart(request, uid):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
+def remove_cart(request, cart_item_uid):
+    try:
+        cart_item = CartItems.objects.get(uid = cart_item_uid)
+        cart_item.delete()
+    except Exception as e:
+        print(e)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
 def cart(request):
     context = {'cart' : Cart.objects.filter(is_paid = False, user = request.user) }
+    
+    if request.method == 'POST':
+        coupon = request.POST.get('coupon')
+        coupon_obj = Coupon.objects.filter(coupon_code__icontains = coupon)
+        if not coupon_obj.exists():
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
     return render(request ,'accounts/cart.html', context)
