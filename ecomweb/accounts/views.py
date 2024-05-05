@@ -5,12 +5,16 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate , login , logout
 from django.http import HttpResponseRedirect,HttpResponse
+
 # Create your views here.
 from .models import Profile
 
+from products.models import *
+from accounts.models import Cart, CartItems
+from django.http import HttpResponseRedirect
+
 
 def login_page(request):
-    return render(request, 'accounts/login.html')
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -67,7 +71,7 @@ def register_page(request):
 
 
 
-def activate_email(request , email_token):
+def activate_email( request , email_token):
     try:
         user = Profile.objects.get(email_token= email_token)
         user.is_email_verified = True
@@ -75,3 +79,28 @@ def activate_email(request , email_token):
         return redirect('/')
     except Exception as e:
         return HttpResponse('Invalid Email token')
+    
+
+def add_to_cart(request, uid):
+    variant = request.GET.get('variant')
+
+
+    product = Product.objects.get(uid = uid)
+    user = request.user
+    cart , _ = Cart.objects.get_or_create(user=user, is_paid = False)
+
+    cart_items = CartItems.objects.create(cart = cart, product = product ,)
+
+    if variant:
+        variant = request.GET.get('variant') 
+        size_variant = SizeVariant.objects.get(size_name = variant)
+        cart_items.size_variant = size_variant
+        cart_items.save()
+
+    # return redirect('/')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+def cart(request):
+    context = {'cart' : Cart.objects.filter(is_paid = False, user = request.user) }
+    return render(request ,'accounts/cart.html', context)
