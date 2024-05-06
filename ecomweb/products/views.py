@@ -3,7 +3,6 @@ from django.shortcuts import redirect, render
 from products.models import Product, SizeVariant
 
 
-
 def get_product(request , slug):
     try:
         product = Product.objects.get(slug =slug)
