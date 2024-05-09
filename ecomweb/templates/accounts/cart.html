@@ -1,10 +1,14 @@
 {% extends "base/base.html" %}
+
 {% block start %}
+
 <section class="section-content padding-y">
     <div class="container">
         <div class="row">
+
             <main class="col-md-9">
                 <div class="card">
+
                     <table class="table table-borderless table-shopping-cart">
                         <thead class="text-muted">
                             I
@@ -21,13 +25,15 @@
                                 <td>
                                     <figure class="itemside">
                                         <div class="aside"><img
-                                                src="/media/{{cart_item.product.product_images.first.image}}"></div>
+                                                src="/media/{{cart_item.product.product_images.first.image}}"
+                                                class="img-sm"></div>
                                         <figcaption class="info">
-                                            <a href="#" class="title text-dark">{{cart_item.product.name}}</a>
+                                            <a href="#" class="title text-dark">{{cart_item.product.name}}Some name of
+                                                items</a>
                                             {% if cart_item.size_variant %}
-                                            <c_class="text-muted small">Size: {{cart_item_size_variant.size_name}}
-                                                </c_class>
-                                                {% endif %}
+                                            <p class="text-muted small">Size: {{cart_item_size_variant.size_name}}
+                                            </p class>
+                                            {% endif %}
                                         </figcaption>
                                     </figure>
                                 </td>
@@ -57,10 +63,12 @@
                     </table>
 
                     <div class="card-body border-top">
-                        <a href="#" class="btn  btn-primary float-md-right"> Make Purchase <i
-                                class="fas fa-money-check"></i> </a>
-                        <a href="#" class="btn  btn-light"> <i class="fa fa-chevron-left"></i> Continue Shopping </a>
+                        <a href="https://esewa.com.np" class="btn  btn-primary float-md-right"> Make Purchase <i
+                                class="fa fa-chevron-right"></i> </a>
+
+                        <a href="/" class="btn  btn-light"> <i class="fa fa-chevron-left"></i> Continue Shopping </a>
                     </div>
+                        
                 </div>
 
                 <div class="alert alert-success mt-3">
@@ -68,17 +76,22 @@
                 </div>
 
             </main>
+
             <aside class="col-md-3">
                 <div class="card mb-3">
                     <div class="card-body">
                         <form method="POST">
+
+                            {% include "base/alert.html" %}
+
                             {% csrf_token %}
+
                             <div class="form-group">
                                 <label>Have coupon?</label>
-                                <!-- <input type="text" class="form-control"> -->
+                               
                                 <div class="input-group">
 
-                                    <input type="text" class="form-control" name="coupon" placeholder="">
+                                    <input type="text" class="form-control" name="coupon" placeholder="Coupon">
                                     <span class="input-group-append">
                                         <button type="submit" class="btn btn-primary">
                                             Apply
@@ -86,16 +99,32 @@
                                     </span>
                                 </div>
                             </div>
+
+                            {% if cart.coupon %}
+                            <a href="{% url 'remove_coupon' cart.uid %}" class="btn btn-success">
+                                {{ cart.coupon.coupon_code }}</a>
+                                <!-- <p class="text-muted small">
+                                    {{cart.coupon.description}}
+                                </p> -->
+                            {% endif %}
+
                         </form>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-body">
+                        <dl class="dlist-align">
+                            <dt>Total:</dt>
+                            <dd class="text-right"> <strong>{{cart.get_cart_total}}</strong> </dd>
+                        </dl>
+
+                        <hr>
 
                     </div>
-
                 </div>
             </aside>
         </div>
     </div>
 </section>
+
+{% endblock %}

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE HTML>
 <html lang="en">
 
@@ -5,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Website title - bootstrap html template</title>
+    <title>KIMGS CLOTHING</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
 
@@ -37,39 +38,71 @@
         // jquery end
     </script>
 
+    <style>
+        li {
+            padding: 8px;
+            font-weight: 450;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-nav.d-none.d-md-flex.mr-auto {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 10px;
+            }
+
+            .col-lg-2.col-4,
+            .col-lg-6.col-sm-12,
+            .col-lg-4.col-sm-6.col-8 {
+                flex-wrap: wrap;
+                /* Allow elements to wrap on smaller screens */
+            }
+
+            .navbar-nav.d-none.d-md-flex.mr-auto li {
+                margin-bottom: 10px;
+            }
+
+            .col-lg-6.col-sm-12 {
+                text-align: center;
+            }
+
+            .search {
+                width: 400px;
+            }
+        }
+    </style>
+
 </head>
 
 <body>
 
-    <header class="section-header">
+    <header class="section-header" style="box-shadow: 0px 2px 5px rgba(0,0,0,0.1);">
 
-        <nav class="navbar navbar-dark navbar-expand p-0 bg-dark">
+        <nav class="navbar navbar-dark navbar-expand p-0"
+            style="box-shadow: 0px 1px 0px rgba(8, 65, 69, 0.201);  height: 55px; font-size: 16px;">
             <div class="container">
                 <ul class="navbar-nav d-none d-md-flex mr-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Delivery</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Payment</a></li>
+                    <li class="nav-item"><a class="nav-link  text-dark" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link  text-dark" href="#">About</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link  text-dark" href="#">Payment</a></li> -->
                 </ul>
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a href="#" class="nav-link"> Call: +99812345678 </a></li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> English </a>
-                        <ul class="dropdown-menu dropdown-menu-right" style="max-width: 100px;">
-                            <li><a class="dropdown-item" href="#">Arabic</a></li>
-                            <li><a class="dropdown-item" href="#">Russian </a></li>
-                        </ul>
-                    </li>
+                    <li class="nav-item"><a href="#" class="nav-link  text-dark"> Call: 9829384232 </a></li>
                 </ul> <!-- list-inline //  -->
             </div> <!-- navbar-collapse .// -->
             <!-- container //  -->
         </nav> <!-- header-top-light.// -->
 
-        <section class="header-main border-bottom">
+        <section class="header-main border-bottom" style="font-size: 14px;">
             <div class="container">
-                <div class="row align-items-center">
+                <div class="row align-items-center ">
                     <div class="col-lg-2 col-4">
                         <div class="brand-wrap">
-                            <img class="logo" src="images/logo.png">
+                            <a href="/">
+                                <h3 style="color: black;">KIMGS</h3>
+                                <!-- <img class="logo" src="{% static 'logo.png' %}" alt="logo"> -->
+                            </a>
                         </div> <!-- brand-wrap.// -->
                     </div>
                     <div class="col-lg-6 col-sm-12">
@@ -87,17 +120,18 @@
                     <div class="col-lg-4 col-sm-6 col-8">
                         <div class="widgets-wrap float-md-right">
                             <div class="widget-header  mr-3">
-                                <a href="#" class="icon icon-sm rounded-circle border"><i
+                                <a href="{% url 'cart' %}" class="icon icon-sm rounded-circle border"><i
                                         class="fa fa-shopping-cart"></i></a>
-                                <span class="badge badge-pill badge-danger notify">0</span>
+                                <span
+                                    class="badge badge-pill badge-danger notify">{{request.user.profile.get_cart_count}}</span>
                             </div>
                             <div class="widget-header icontext">
                                 <a href="#" class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
                                 <div class="text">
-                                    <span class="text-muted">Welcome!</span>
+                                    <span class="text-muted"></span>
                                     <div>
-                                        <a href="#">Sign in</a> |
-                                        <a href="#"> Register</a>
+                                        <a href="{% url 'login' %}">Sign in</a> |
+                                        <a href="{% url 'register' %}"> <i class="fas fa-user-plus"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -107,6 +141,34 @@
             </div> <!-- container.// -->
         </section> <!-- header-main .// -->
     </header>
+
+    <script>
+        const searchForm = document.querySelector('.search');
+        const searchInput = document.querySelector('.form-control');
+        const searchableContent = document.querySelectorAll("p, h1, h2, h3, span");
+
+        searchForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent default form submission
+
+            const searchTerm = searchInput.value.toLowerCase();
+            let matchesFound = false;
+
+            searchableContent.forEach(element => {
+                const contentText = element.textContent.toLowerCase();
+                if (contentText.indexOf(searchTerm) !== -1) {
+                    element.innerHTML = element.innerHTML.replace(
+                        new RegExp(searchTerm, 'gi'),
+                        `<b>$&</b>` // Wrap matched term in bold tags
+                    );
+                    matchesFound = true;
+                }
+            });
+
+            if (!matchesFound) {
+                alert(`No results found for "${searchTerm}"`);
+            }
+        });
+    </script>
 
 
 

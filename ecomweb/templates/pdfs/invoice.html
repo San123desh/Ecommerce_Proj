@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Invoice Receipt</title>
+  <style>
+    /* Invoice table styles */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    .text-right {
+      text-align: right;
+    }
+    .text-center {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td colspan="2" style="padding: 20px 0;">
+        <img src="logo.png" width="150" alt="Company Logo" />
+      </td>
+    </tr>
+    <tr>
+      <td width="49%">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td style="font-weight: bold;">Invoice Receipt</td>
+          </tr>
+        </table>
+      </td>
+      <td width="51%">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <th style="font-weight: bold;">Order Date:</th>
+            <td class="text-right">((data.order_date))</td>
+          </tr>
+          <tr>
+            <th style="font-weight: bold;">Invoice Number:</th>
+            <td class="text-right">((data.id))</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <th style="font-weight: bold;">Service Provider</th>
+            <th style="font-weight: bold;">Customer Name</th>
+          </tr>
+          <tr>
+            <td valign="top">
+              1001A, The Capital & Wing, 10th Floor,<br>
+              Bandra Kuria Complex, Bandra (E), Mumbai<br>
+              Contact: 9876543210
+            </td>
+            <td valign="top">
+              ((data.name))<br>
+              ((data.address))
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <th style="font-weight: bold;">Description</th>
+            <th style="font-weight: bold;" class="text-right">Bill Amount</th>
+            <th style="font-weight: bold;" class="text-right">Payment Method</th>
+          </tr>
+          <tr>
+            <td>((data.description))</td>
+            <td class="text-right">((data.amount))</td>
+            <td class="text-right">((data.pay_method))</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <p style="font-style: italic;">
+          Dear Consumer, the bill payment will reflect in your account within the next 48 hours. Please contact our customer support for any queries regarding this order.
+        </p>
+        <p style="font-style: italic;">
+          (This is a computer-generated receipt and does not require a physical signature.)
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
