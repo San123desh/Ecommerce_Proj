@@ -1,0 +1,189 @@
+{% extends "base/base.html" %}
+
+
+
+{% block start %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <style>
+        body {    
+            margin: 0;
+            letter-spacing: 0.03cap;
+        }
+ 
+        html {
+            box-sizing: border-box;
+        }
+
+    
+        .column {
+            float: left;
+            width: 33.3%;
+            margin-bottom: 16px;
+            padding: 0 8px;
+            border-left: solid #47454553;
+        }
+
+        h1{
+            font-size: 34px;
+            font-weight: 100;
+        }
+
+        p{
+            line-height: 2cap;
+
+        }
+
+        .card {
+            margin: 8px;
+            padding: 30px;
+
+        }
+
+        .about-section {
+            padding: 60px;
+            text-align: center;
+            color: rgb(3, 3, 3);
+        }
+
+        .container {
+            padding: 0 16px;
+        }
+
+        .container::after,
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .title {
+            color: grey;
+        }
+
+        @media screen and (max-width: 650px) {
+            .column {
+                width: 100%;
+                display: block;
+            }
+        }
+    </style> -->
+    <style>
+         .card {
+            margin: 8px;
+            padding: 30px;
+
+        }
+        .column {
+            float: left;
+            width: 33.3%;
+            margin-bottom: 16px;
+            padding: 0 8px;
+            border-left: solid #47454553;
+        }
+
+        h1{
+            font-size: 34px;
+            font-weight: 200;
+            margin-bottom: 30px;
+        }
+
+        p{
+            line-height: 2cap;
+
+        }
+        .about-section {
+            padding: 60px;
+            text-align: center;
+            color: rgb(0, 0, 0);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="about-section">
+        <h1>We are an avid traveller, outdoor & fashion enthusiast, marketeers by education and profession. Driven to
+            create value for our products’ users while working closely with insulation and technical wear experts. </h1>
+        <p style="text-align: left;">In autumn 2018, I was managing a Helambu trek for some international clients of a
+            trekking company. The
+            Nepali and foreign gears that I took with me at the time seemed adequate enough for an altitude up to 3771
+            meters and back to Sermathang, a lovely village at an elevation of 2500 meters. On the second day of the
+            trek, my outerwear failed to perform with its faulty zippers and non-breathable construction and filing. I
+            had faced similar problems in the past lengthy treks which had made some journeys miserable.
+            <br><br>
+
+            After returning back to Kathmandu and getting recommendations about good quality ‘Made in Nepal’ outdoor
+            brands from our trekking leader, I got my hands on them. However, the market always felt that something was
+            missing, that something needed to be improved, that something was there that needed changes. They were
+            exceptional yet they didn’t communicate with their consumers well about the functions, ratings, and the tiny
+            details that could have been valuable in harsh weather conditions in the mountains or anywhere.
+            <br><br>
+
+            As an unsatisfied and inquisitive customer, I went on to prototype a clothing line that answered and
+            delivered some unmet expectations from the past. The clothing line which offers light and weather-proof,
+            breathable and fashionable outfits, led me to start Aroan. Aroan is a short term for the Sanskrit and Nepali
+            word ‘Arohan’ which means to ascent, climb or rise. Our logo represents the three geographical regions of
+            Nepal, Himal, Pahad and Tarai.
+
+            A Scandinavian proverb “There’s no such thing as bad weather, only inappropriate clothing” stays true to our
+            belief and value.
+
+            Stay tuned, we will be bringing out some fine clothing for the tropical, temperate, and alpine climates for
+            any geographic region and climatic condition.
+
+            Now you have a fashionable and comfortable outdoor brand designed and made in Nepal, that you can take pride
+            in.
+            ?
+            <br> <br>
+            Seize the day! <br> <br>
+            Kriteeka Shrestha <br>
+            Sandesh Shrestha <br>
+            Ritiz Man Thaiba <br>
+            Leo Lepcha <br> <br>
+            Founder
+        </p>
+    </div>
+    <hr>
+
+    <h2 style="text-align:center">Our Team</h2>
+    <div class="row">
+        <div class="column">
+            <div class="card">
+                <div class="container">
+                    <h2>Clothing Tips</h2>
+                    <p class="title">Made In Nepal</p>
+                    <p>Drop us a message if you are confused about layering and finding the right outerwear for you, we will come up with the best one according to your activity and taste.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <div class="container">
+                    <h2>Free delivery all over Nepal</h2>
+                    <p class="title">KIMGS Clothing</p>
+                    <p>Enjoy free and fast delivery to the major and remote cities of Nepal.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <div class="container">
+                    <h2>An e-commerce you can actually trust</h2>
+                    <p> As we all have had our share of bad experiences with online shopping, we investigate each product thoroughly before dispatching it for delivery. Also, during the delivery, if you somehow feel that the product isn't right for you or you just don't like it then you can simply return your package with the same delivery person. No return charge in this!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+{% endblock %}
