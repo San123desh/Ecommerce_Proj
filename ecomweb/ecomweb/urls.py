@@ -20,6 +20,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
+from accounts import views
+from django.views.generic import TemplateView
 
 
 urlpatterns = [
@@ -27,6 +29,9 @@ urlpatterns = [
     path('product/' , include('products.urls') ),
     path('accounts/' , include('accounts.urls') ),
     path('admin/', admin.site.urls),
+    # path('about/', views.about, name='about'),
+    path('about/', TemplateView.as_view(template_name='accounts/about.html'), name='about'),
+
 ]
 
 
