@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>KIMGS CLOTHING</title>
+    <title>EZee CLOTHING</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
 
@@ -39,50 +39,59 @@
     </script>
 
     <style>
-        body{
+        body {
             background-color: whitesmoke;
         }
+
         li {
             padding: 8px;
             font-weight: 450;
         }
 
-        @media (max-width: 768px) {
+        /* Media query for mobile devices */
+        @media (max-width: 480px) {
+
+            /* Adjust navigation bar styles for smaller screens */
+            .navbar {
+                display: flex;
+                
+                justify-content: space-between;
+               
+            }
+
+            .nav-item {
+                /* Style navigation items for smaller screens */
+                margin: 0 10px;
+                /* Add margin between items */
+            }
+
+            /* Target the remove button */
+            .remove {
+                /* Style the remove button for smaller screens */
+                display: flex;
+                align-items: center;
+                /* Vertically center button content */
+            }
+        }
+
+        /* Media query for tablets */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .navbar-nav .nav-item {
+                margin-right: 10px;
+            }
+
+            .header-main .brand-wrap {
+                text-align: center;
+            }
+        }
+
+        /* Media query for tablets */
+        @media (min-width: 992px) and (max-width: 1199px) {
             .navbar-nav.d-none.d-md-flex.mr-auto {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 margin-top: 10px;
-            }
-
-            .col-lg-2.col-4,
-            .col-lg-6.col-sm-12,
-            .col-lg-4.col-sm-6.col-8 {
-                flex-wrap: wrap;
-                /* Allow elements to wrap on smaller screens */
-            }
-
-            .navbar-nav.d-none.d-md-flex.mr-auto li {
-                margin-bottom: 10px;
-            }
-
-            .col-lg-6.col-sm-12 {
-                text-align: center;
-            }
-
-            .search {
-                width: 300px;
-            }
-
-            .section-footer{
-                display: flex;
-                justify-content: center;
-                margin-top: 20px;
-                margin-bottom: 20px;
-                padding: 10px;
-                font-size: 14px;
-                font-weight: 100;
-
             }
         }
     </style>
@@ -99,7 +108,7 @@
                 <ul class="navbar-nav d-none d-md-flex mr-auto">
                     <li class="nav-item"><a class="nav-link  text-dark" href="/">Home</a></li>
                     <li class="nav-item"><a class="nav-link  text-dark" href="{% url 'about' %}">About</a></li>
-                    <!-- <li class="nav-item"><a class="nav-link  text-dark" href="#">Payment</a></li> -->
+
                 </ul>
                 <ul class="navbar-nav">
                 </ul> <!-- list-inline //  -->
@@ -113,8 +122,8 @@
                     <div class="col-lg-2 col-4">
                         <div class="brand-wrap">
                             <a href="/">
-                                <h3 style="color: black;">KIMGS</h3>
-                                <!-- <img class="logo" src="{% static 'logo.png' %}" alt="logo"> -->
+                                <!-- <h3 style="color: rgb(20, 75, 97); font-family: cursive;">EZeeClothing</h3> -->
+                                <img class="logo" src="{{ MEDIA_URL }}logo2.jpg" alt="logo">
                             </a>
                         </div> <!-- brand-wrap.// -->
                     </div>
@@ -131,20 +140,22 @@
                         </form> <!-- search-wrap .end// -->
                     </div> <!-- col.// -->
                     <div class="col-lg-4 col-sm-6 col-8">
-                        <div class="widgets-wrap float-md-right" >
+                        <div class="widgets-wrap float-md-right">
                             <div class="widget-header  mr-3">
                                 <a href="{% url 'cart' %}" class="icon icon-sm rounded-circle border"><i
-                                        class="fa fa-shopping-bag" style="color: black;" ></i></a>
+                                        class="fa fa-shopping-bag" style="color: black;"></i></a>
                                 <span
                                     class="badge badge-pill badge-danger notify">{{request.user.profile.get_cart_count}}</span>
                             </div>
                             <div class="widget-header icontext">
                                 <!-- <a href="#" class="icon icon-sm rounded-circle border"></a> -->
-                                <div class="text" >
+                                <div class="text">
                                     <span class="text-muted"></span>
                                     <div>
-                                        <a href="{% url 'login' %}" ><i class="fa fa-user" style="color: black; font-size: 22px; "></i></a> |
-                                        <a href="{% url 'register' %}"> <i class="fas fa-user-plus" style="color: black; font-size: 22px;"></i></a>
+                                        <a href="{% url 'login' %}"><i class="fa fa-user"
+                                                style="color: black; font-size: 22px; "></i></a> |
+                                        <a href="{% url 'register' %}"> <i class="fas fa-user-plus"
+                                                style="color: black; font-size: 22px;"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -155,7 +166,7 @@
         </section> <!-- header-main .// -->
     </header>
 
-    
+
 
     <script>
         const searchForm = document.querySelector('.search');
@@ -185,50 +196,48 @@
         });
     </script>
 
-
-
     {% block start %}
 
     {% endblock %}
 
-    <footer class="section-footer bg-light py-5" >
+    <footer class="section-footer bg-light py-5">
         <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-4 col-md-6 text-md-left text-center">
-              <div class="widget contact-widget">
-                <h4 class="widget-title mb-3">Contact Us</h4>
-                <a href="mailto:your-email@domain.com" class="text-dark">kimgs@gmail.com</a>
-                <p class="mb-0">Call: 9823244283</p>
-              </div>
+            <div class="row align-items-center">
+                <div class="col-lg-4 col-md-6 text-md-left text-center">
+                    <div class="widget contact-widget">
+                        <h4 class="widget-title mb-3">Contact Us</h4>
+                        <a href="mailto:your-email@domain.com" class="text-dark">kimgs@gmail.com</a>
+                        <p class="mb-0">Call: 9823244283</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-md-0 mb-3 text-md-left text-center">
+                    <div class="widget address-widget">
+                        <h4 class="widget-title mb-3">Address</h4>
+                        <address>
+                            Kathmandu, Nepal<br>
+                            Banasthali, Kathmandu<br>
+                        </address>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 text-md-right text-center">
+                    <div class="widget text-widget">
+                        <h4 class="widget-title mb-3">Help</h4>
+                        <ul class="list-unstyled mb-0">
+                            <li><a href="#">F.A.Q</a></li>
+                            <li><a href="#">Shipping & Returns</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms & Conditions</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-4 col-md-6 mb-md-0 mb-3 text-md-left text-center">
-              <div class="widget address-widget">
-                <h4 class="widget-title mb-3">Address</h4>
-                <address>
-                  Kathmandu, Nepal<br>
-                  Banasthali, Kathmandu<br>
-                </address>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-md-right text-center">
-              <div class="widget text-widget" >
-                <h4 class="widget-title mb-3">Help</h4>
-                <ul class="list-unstyled mb-0">
-                  <li><a href="#">F.A.Q</a></li>
-                  <li><a href="#">Shipping & Returns</a></li>
-                  <li><a href="#">Privacy Policy</a></li>
-                  <li><a href="#">Terms & Conditions</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
         </div>
-      </footer>
-    
-      <div class="copyright-bar bg-dark text-center py-3">
-        <p class="text-light mb-0">© Copyright 2024 KIMGS Clothing. All Rights Reserved.</p>
-      </div>
-    
+    </footer>
+
+    <div class="copyright-bar bg-dark text-center py-3">
+        <p class="text-light mb-0">© Copyright 2024 EZeeClothing. All Rights Reserved.</p>
+    </div>
+
 </body>
 
 </html>
