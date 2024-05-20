@@ -31,7 +31,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('about/', views.about, name='about'),
     path('about/', TemplateView.as_view(template_name='accounts/about.html'), name='about'),
-
+    path('', include('accounts.urls')),
 ]
 
 

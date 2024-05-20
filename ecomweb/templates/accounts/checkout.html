@@ -1,5 +1,4 @@
-
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -128,8 +127,6 @@
         .payment-method img {
             margin-right: 10px;
             width: 6%;
-            /* height: 15%; */
-            /* vertical-align: middle; */
 
         }
 
@@ -138,14 +135,94 @@
             font-weight: normal;
         }
 
+        /* Media query for tablets and below (landscape) */
+        @media (max-width: 1024px) {
+            .inline {
+                flex-direction: column;
+            }
+
+            .inline div {
+                width: 100%;
+            }
+
+            .payment-method img {
+                width: 8%;
+                /* Adjusted for slightly larger screens */
+            }
+        }
+
+        /* Media query for mobile devices (portrait) */
+        @media (max-width: 768px) {
+            form {
+                padding: 15px;
+            }
+
+            h1,
+            h2 {
+                font-size: 1.3em;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="tel"],
+            textarea,
+            select {
+                width: calc(100% - 20px);
+                padding: 8px;
+            }
+
+            .payment-method img {
+                width: 10%;
+            }
+        }
+
+        /* Media query for smaller mobile devices (portrait) */
+        @media (max-width: 480px) {
+            body {
+                align-items: flex-start;
+                padding-top: 20px;
+            }
+
+            form {
+                padding: 10px;
+                box-shadow: none;
+            }
+
+            h1,
+            h2 {
+                font-size: 1.1em;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="tel"],
+            textarea,
+            select {
+                width: calc(100% - 16px);
+                padding: 6px;
+            }
+
+            button {
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            .payment-method img {
+                width: 12%;
+            }
+        }
     </style>
 </head>
 
 <body>
     <form action="{% url 'generate_invoice' %}" method="post">
         {% csrf_token %}
+       
+        <a href="{% url 'index' %}" class="arrow-button" style="text-decoration: none;">
 
-        <h1>  Checkout</h1>
+            <h1>Checkout</h1>
+        </a>
+
         <h2>1. General Information</h2>
         <div>
             <label for="full_name">Full Name *</label>
@@ -169,12 +246,8 @@
         <h2>2. Delivery Address</h2>
         <div>
             <label for="city">City / District *</label>
-            <select id="city" name="city" required>
-                <option value="">Select City</option>
-                <option value="kathmandu_inside_ring_road">Kathmandu Inside Ring Road</option>
-                <option value="kathmandu_inside_ring_road">Nuwakot</option>
-                <option value="kathmandu_inside_ring_road">Lalitpur</option>
-            </select>
+            <input type="text" id="city" name="city" required placeholder="eg: District/City">
+
         </div>
         <div class="inline">
             <div>
@@ -188,14 +261,18 @@
         </div>
         <h2>3. Payment Methods</h2>
         <div class="payment-method">
-            <input type="radio" id="cash_on_delivery" name="payment_method" value="cash_on_delivery" checked>
-            <img src="./cash-on-delivery.png" alt="Cash on delivery icon">
-            <label for="cash_on_delivery">Cash on delivery</label>
+            <select name="payment" id="payment" required
+                style="padding: 8px; font-size: 16px; background-color: rgba(6, 169, 6, 0.951); color: rgb(255, 255, 255); font-weight: 500; border: none; border-radius: 5px; width: 100%;">
+                <option value="">Select Payment Method</option>
+                <option value="OnDelivery">Cash on Delivery</option>
+                <option value="esewa">Esewa</option>
+                <option value="khalti">Khalti</option>
+                <!-- <img src="{% static 'logo.png' %}" alt=""> -->
+            </select>
         </div>
-        <button type="submit">Place Order</button>
+        <button type="submit" style="margin-top: 20px;">Place Order</button>
+
     </form>
 </body>
 
 </html>
-
-

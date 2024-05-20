@@ -39,9 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "products",
     "accounts",
-    "home",
-    "esewa_payments",
-    
+    "home",   
 ]
 
 MIDDLEWARE = [
@@ -63,6 +61,7 @@ TEMPLATES = [
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
+                'django.template.context_processors.media',
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
@@ -124,14 +123,15 @@ USE_TZ = True
 # STATIC_URL = '/static/'
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
-STATICFILES_DIR = {
-    os.path.join(BASE_DIR , "public/static")
-}
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR , "public/static"),
+]
 
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'public/static') 
 MEDIA_URL = '/media/'
+
 
 
 # Default primary key field type

@@ -3,10 +3,7 @@
 {% block start %}
 
 <style>
-    /* Media queries for mobile devices */
-    /* Set breakpoint for smaller screens */
-
-    /* Media queries for tablet devices */
+    
     @media (min-width: 768px) and (max-width: 991px) {
 
         /* Your tablet styles here */
@@ -48,9 +45,9 @@
                                             <a href="#" class="title text-dark">{{cart_item.product.name}}Items on the
                                                 cart</a>
                                             {% if cart_item.size_variant %}
-                                            <p class="text-muted small">Size: {{cart_item_size_variant.size_name}}</p>
+                                            <p class="text-muted small">Size: {{cart_item.size_variant.size_name}}</p>
                                             {% endif %}
-                                            <p>{{cart_item.product.description}}</p>
+                                            <p>{{cart_item.product.product_description}}</p>
                                         </figcaption>
                                     </figure>
                                 </td>
@@ -68,8 +65,7 @@
                                     </div>
                                 </td>
                                 <td class="text-right">
-                                    <!-- <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light"
-                                        data-toggle="tooltip"> <i class="fa fa-heart"></i></a> -->
+                          
                                     <a href="{% url 'remove_cart' cart_item.uid %}" class="btn btn-light"> Remove</a>
                                 </td>
                             </tr>
@@ -80,9 +76,6 @@
                     </table>
 
                     <div class="card-body border-top">
-                        <!-- <a href="https://esewa.com.np" class="btn  btn-primary float-md-right"> Make Purchase <i
-                                class="fa fa-chevron-right"></i> </a> -->
-
                         <a href="/" class="btn  btn-light"> <i class="fa fa-chevron-left"></i> Continue Shopping </a>
                     </div>
 
@@ -120,9 +113,7 @@
                             {% if cart.coupon %}
                             <a href="{% url 'remove_coupon' cart.uid %}" class="btn btn-success">
                                 {{ cart.coupon.coupon_code }}</a>
-                            <!-- <p class="text-muted small">
-                                    {{cart.coupon.description}}
-                                </p> -->
+                           
                             {% endif %}
 
                         </form>
@@ -141,15 +132,6 @@
                             <a href="{% url 'checkout' %}" class="btn  btn-primary float-md-right">Checkout <i
                                 class="fa fa-chevron-right"></i> </a>
                         </dl>
-
-                        <!-- <dl>
-                            <select name="" id=""
-                                style="padding: 8px; font-size: 16px; background-color: rgb(3, 186, 3); color: white; font-weight: 600; border: none; border-radius: 5px;">
-                                <option value="">Payment</option>
-                                <option value="esewa">Esewa</option>
-                                <option value="khalti">Khalti</option>
-                            </select>
-                        </dl> -->
 
                         <p class="text-center mb-3">
                         </p>
