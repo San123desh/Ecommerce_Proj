@@ -33,7 +33,7 @@ EZEE CLOTHING is developed to cater to the growing needs of the e-commerce marke
 - **Frontend**: HTML, CSS, JavaScript, Bootstrap
 - **Backend**: Django
 - **Database**: SQLite (default), can be configured to use other databases
-- **Deployment**: [Heroku](https://www.heroku.com/) or any other web hosting service
+
 
 ## Project Setup
 
@@ -60,8 +60,15 @@ EZEE CLOTHING is developed to cater to the growing needs of the e-commerce marke
 3. **Activate the virtual environment:**
     - On Windows:
       ```bash
-      conda activate 
+      conda activate envname
       ```
+4. **Activate the virtual environment:**
+    - On Windows:
+      ```bash
+      conda deactivate
+      ```
+
+
 
 ### Database Migration
 1. **Make migrations:**
