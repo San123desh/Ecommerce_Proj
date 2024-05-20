@@ -19,12 +19,12 @@ class Category(BaseModel):
         return self.category_name
 
 
-class ColorVariant(BaseModel):
-    color_name = models.CharField(max_length=100)
-    price = models.IntegerField(default=0)
+# class ColorVariant(BaseModel):
+#     color_name = models.CharField(max_length=100)
+#     price = models.IntegerField(default=0)
 
-    def __str__(self) -> str:
-        return self.color_name
+#     def __str__(self) -> str:
+#         return self.color_name
 
 class SizeVariant(BaseModel):
     size_name = models.CharField(max_length=100)
@@ -40,7 +40,7 @@ class Product(BaseModel):
     category = models.ForeignKey(Category , on_delete=models.CASCADE , related_name="products")
     price = models.IntegerField()
     product_desription = models.TextField()
-    color_variant = models.ManyToManyField(ColorVariant , blank=True)
+    # color_variant = models.ManyToManyField(ColorVariant , blank=True)
     size_variant = models.ManyToManyField(SizeVariant , blank=True)
 
 

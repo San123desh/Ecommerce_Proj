@@ -17,10 +17,10 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductImageAdmin]
 
 
-@admin.register(ColorVariant)
-class ColorVariantAdmin(admin.ModelAdmin):
-    list_display = ['color_name' , 'price']
-    model = ColorVariant
+# @admin.register(ColorVariant)
+# class ColorVariantAdmin(admin.ModelAdmin):
+#     list_display = ['color_name' , 'price']
+#     model = ColorVariant
 
 @admin.register(SizeVariant)
 class SizeVariantAdmin(admin.ModelAdmin):
@@ -32,3 +32,6 @@ admin.site.register(Product ,ProductAdmin)
 
 
 admin.site.register(ProductImage)
+
+
+
