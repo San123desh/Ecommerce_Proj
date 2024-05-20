@@ -1,22 +1,22 @@
-# EZEE CLOTHING - E-commerce Website
+# EZEE CLOTHING -Ecommerce Website
 
-Welcome to EZEE CLOTHING, an e-commerce website project aimed at revolutionizing online shopping for clothing in Nepal. This project leverages Django, HTML, CSS, JavaScript, and Bootstrap to create a responsive, user-friendly, and secure online shopping platform.
+EZEE CLOTHING is an e-commerce website designed to provide a seamless online shopping experience. This project leverages Django, HTML, CSS, JavaScript, and Bootstrap to create a responsive and user-friendly platform.
 
 ## Table of Contents
-1. [Project Overview](#project-overview)
-2. [Features](#features)
-3. [Setup and Installation](#setup-and-installation)
-    - [Pre-requisites](#pre-requisites)
-    - [Installation](#installation)
-4. [Database Migrations](#database-migrations)
-5. [Creating a Superuser](#creating-a-superuser)
-6. [Running the Project](#running-the-project)
-7. [Project Structure](#project-structure)
-8. [References](#references)
+- [Introduction](#introduction)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Setup](#project-setup)
+  - [Pre-requisites](#pre-requisites)
+  - [Installation](#installation)
+  - [Database Migration](#database-migration)
+  - [Create Superuser](#create-superuser)
+  - [Running the Server](#running-the-server)
+- [Django Overview](#django-overview)
+- [Contributors](#contributors)
 
-## Project Overview
-
-EZEE CLOTHING provides a seamless shopping experience with features such as user registration, product catalog management, shopping cart functionality, secure payment integration, and more. It addresses the challenges of the Nepalese e-commerce market by ensuring product quality, reliable logistics, diverse payment options, and customer trust.
+## Introduction
+EZEE CLOTHING is developed to cater to the growing needs of the e-commerce market, particularly focusing on the Nepalese market. The website includes features such as a diverse product catalog, secure payment options, and efficient delivery systems.
 
 ## Features
 
@@ -27,18 +27,67 @@ EZEE CLOTHING provides a seamless shopping experience with features such as user
 - **Customer Support**: Responsive customer service via chat, email, and phone.
 - **Trust-Building Measures**: Customer reviews, quality assurance, and authenticity guarantees.
 
-## Setup and Installation
+
+
+## Tech Stack
+- **Frontend**: HTML, CSS, JavaScript, Bootstrap
+- **Backend**: Django
+- **Database**: SQLite (default), can be configured to use other databases
+- **Deployment**: [Heroku](https://www.heroku.com/) or any other web hosting service
+
+## Project Setup
 
 ### Pre-requisites
-
 - Python 3.x
 - Django
 - SQLite (default database for Django)
 - HTML & CSS (Bootstrap)
 - Git (for version control)
 
-### Installation
 
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/San123desh/Ecommerce_Proj.git
+### Installation
+1. **Clone the repository:**
+    ```bash
+     git clone https://github.com/San123desh/Ecommerce_Proj.git
+
+    ```
+
+2. **Create a virtual environment:**
+    ```bash
+    conda create -n envname python=3.x 
+    ```
+
+3. **Activate the virtual environment:**
+    - On Windows:
+      ```bash
+      conda activate 
+      ```
+
+### Database Migration
+1. **Make migrations:**
+    ```bash
+    python manage.py makemigrations
+    ```
+
+2. **Apply migrations:**
+    ```bash
+    python manage.py migrate
+    ```
+
+### Create Superuser
+To access the Django admin panel, you need to create a superuser.
+```bash
+python manage.py createsuperuser
+```
+
+### Running the Server
+```bash
+python manage.py runserver
+```
+
+## Contributors
+
+- Kriteeka Shrestha
+- Leo Lepcha
+- Ritiz Man Thaiba
+- Sandesh Shrestha
