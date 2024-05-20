@@ -5,7 +5,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 import uuid
 from base.emails import send_account_activation_email
-from products.models import ColorVariant, Coupon, Product, SizeVariant
+from products.models import Coupon, Product, SizeVariant
 
 class Profile(BaseModel):
     user = models.OneToOneField(User , on_delete=models.CASCADE , related_name="profile")
@@ -28,9 +28,9 @@ class Cart(BaseModel):
         price = []
         for cart_item in cart_items:
             price.append(cart_item.product.price)
-            if cart_item.color_variant:
-                color_variant_price = cart_item.color_variant.price
-                price.append(color_variant_price)
+            # if cart_item.color_variant:
+            #     color_variant_price = cart_item.color_variant.price
+            #     price.append(color_variant_price)
             if cart_item.size_variant:
                 size_variant_price = cart_item.size_variant.price 
                 price.append(size_variant_price)
@@ -45,19 +45,36 @@ class Cart(BaseModel):
 class CartItems(BaseModel):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name= "cart_items")
     product = models.ForeignKey(Product , on_delete=models.SET_NULL, null = True, blank = True)
-    color_variant = models.ForeignKey(ColorVariant, on_delete = models.SET_NULL,null = True , blank=True)
+    # color_variant = models.ForeignKey(ColorVariant, on_delete = models.SET_NULL,null = True , blank=True)
     size_variant = models.ForeignKey(SizeVariant , on_delete = models.SET_NULL,null = True , blank=True)
 
     def get_product_price(self):
         price = [self.product.price]
 
-        if self.color_variant:
-            color_variant_price = self.color_variant.price
-            price.append(color_variant_price)
+        # if self.color_variant:
+        #     color_variant_price = self.color_variant.price
+        #     price.append(color_variant_price)
         if self.size_variant:
             size_variant_price = self.size_variant.price
             price.append(size_variant_price) 
         return sum(price)
+
+
+
+class Order(models.Model):
+    full_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone_number = models.CharField(max_length=15)
+    order_note = models.TextField(blank=True, null=True)
+    city = models.CharField(max_length=100)
+    address = models.CharField(max_length=255)
+    landmark = models.CharField(max_length=255, blank=True, null=True)
+    payment_method = models.CharField(max_length=50)
+    date = models.DateTimeField(auto_now_add=True)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f'Order {self.id} - {self.full_name}'
 
 
 
@@ -72,4 +89,6 @@ def  send_email_token(sender , instance , created , **kwargs):
 
     except Exception as e:
         print(e)
+
+
 
