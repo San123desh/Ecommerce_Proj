@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <form
+        action="register.php"
+        method="post"
+        name="myForm"
+        onsubmit="return validateForm()"
+        id="signupForm"
+      >
+        <h2>Registration</h2>
+        <div class="input_form">
+          <input
+            type="text"
+            name="uname"
+            placeholder="Your name"
+            id="uname"
+            class="formerror"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            class="formerror"
+            required
+            id="mymail"
+            placeholder="Email"
+          />
+
+          <input
+            type="text"
+            name="address"
+            class="formerror"
+            id="myaddress"
+            placeholder="Address"
+            required
+          />
+
+          <input
+            type="tel"
+            name="contact"
+            id="mycontact"
+            class="formerror"
+            placeholder="Contact"
+            required
+          />
+
+          <input
+            type="password"
+            name="pass"
+            class="formerror"
+            id="pass"
+            placeholder="Password"
+            required
+          />
+          <input
+            type="password"
+            name="cpass"
+            class="formerror"
+            placeholder="Confirm Password"
+            id="cpass"
+            required
+          />
+          <button type="submit" class="btn">Register</button>
+          <p>Already have an account?<a href="./login.html">login here!</a></p>
+        </div>
+      </form>
+    </div>
+  </body>
+  <script src="/js/registration.js"></script>
+</html>
