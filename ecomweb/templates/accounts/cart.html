@@ -3,10 +3,7 @@
 {% block start %}
 
 <style>
-    
     @media (min-width: 768px) and (max-width: 991px) {
-
-        /* Your tablet styles here */
         .container {
             padding: 0 30px;
         }
@@ -16,16 +13,15 @@
         }
     }
 </style>
+
 <section class="section-content padding-y">
     <div class="container">
         <div class="row">
 
             <main class="col-md-9">
                 <div class="card">
-
                     <table class="table table-borderless table-shopping-cart">
                         <thead class="text-muted">
-
                             <tr class="small text-uppercase">
                                 <th scope="col">Product</th>
                                 <th scope="col" width="120">Quantity</th>
@@ -38,16 +34,13 @@
                             <tr>
                                 <td>
                                     <figure class="itemside">
-                                        <div class="aside"><img
-                                                src="/media/{{cart_item.product.product_images.first.image}}"
-                                                class="img-sm"></div>
+                                        <div class="aside"><img src="/media/{{ cart_item.product.product_images.first.image }}" class="img-sm"></div>
                                         <figcaption class="info">
-                                            <a href="#" class="title text-dark">{{cart_item.product.name}}Items on the
-                                                cart</a>
+                                            <a href="#" class="title text-dark">{{ cart_item.product.product_name }}</a>
                                             {% if cart_item.size_variant %}
-                                            <p class="text-muted small">Size: {{cart_item.size_variant.size_name}}</p>
+                                            <p class="text-muted small">Size: {{ cart_item.size_variant.size_name }}</p>
                                             {% endif %}
-                                            <p>{{cart_item.product.product_description}}</p>
+                                            <p class="text-muted small">{{ cart_item.product.product_description }}</p>
                                         </figcaption>
                                     </figure>
                                 </td>
@@ -61,51 +54,40 @@
                                 </td>
                                 <td>
                                     <div class="price-wrap">
-                                        <var class="price">{{cart_item.get_product_price}}</var>
+                                        <var class="price">{{ cart_item.get_product_price }}</var>
                                     </div>
                                 </td>
                                 <td class="text-right">
-                          
                                     <a href="{% url 'remove_cart' cart_item.uid %}" class="btn btn-light"> Remove</a>
                                 </td>
                             </tr>
-
                             {% endfor %}
-
                         </tbody>
                     </table>
 
                     <div class="card-body border-top">
-                        <a href="/" class="btn  btn-light"> <i class="fa fa-chevron-left"></i> Continue Shopping </a>
+                        <a href="/" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue Shopping </a>
                     </div>
-
                 </div>
 
                 <div class="alert alert-success mt-3">
                     <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Delivery</p>
                 </div>
-
             </main>
 
             <aside class="col-md-3">
                 <div class="card mb-3">
                     <div class="card-body">
                         <form method="POST">
-
                             {% include "base/alert.html" %}
-
                             {% csrf_token %}
 
                             <div class="form-group">
                                 <label>Have coupon?</label>
-
                                 <div class="input-group">
-
                                     <input type="text" class="form-control" name="coupon" placeholder="Coupon">
                                     <span class="input-group-append">
-                                        <button type="submit" class="btn btn-primary">
-                                            Apply
-                                        </button>
+                                        <button type="submit" class="btn btn-primary">Apply</button>
                                     </span>
                                 </div>
                             </div>
@@ -113,33 +95,30 @@
                             {% if cart.coupon %}
                             <a href="{% url 'remove_coupon' cart.uid %}" class="btn btn-success">
                                 {{ cart.coupon.coupon_code }}</a>
-                           
                             {% endif %}
-
                         </form>
                     </div>
                 </div>
+
                 <div class="card">
                     <div class="card-body">
                         <dl class="dlist-align">
                             <dt>Total:</dt>
-                            <dd class="text-right"> <strong>{{cart.get_cart_total}}</strong> </dd>
+                            <dd class="text-right"> <strong>{{ cart.get_cart_total }}</strong> </dd>
                         </dl>
 
                         <hr>
 
                         <dl>
-                            <a href="{% url 'checkout' %}" class="btn  btn-primary float-md-right">Checkout <i
-                                class="fa fa-chevron-right"></i> </a>
+                            <a href="{% url 'checkout' %}" class="btn btn-primary float-md-right">Checkout <i class="fa fa-chevron-right"></i></a>
                         </dl>
 
-                        <p class="text-center mb-3">
-                        </p>
-
+                        <p class="text-center mb-3"></p>
                     </div>
                 </div>
             </aside>
         </div>
     </div>
 </section>
+
 {% endblock %}
